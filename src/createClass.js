@@ -3,6 +3,16 @@ import ReactDom from 'react-dom';
 
 
 var CreateClass = React.createClass({
+    //设置 initial props
+    propTypes: { // as an object
+        name: React.PropTypes.string
+    },
+    getDefaultProps:function(){   // return a object
+        return {
+            name: '我是初始化的props'    
+        }
+    },
+
     // 设置 initial state
     getInitialState: function() {//组件相关的状态对象
         return {
@@ -17,7 +27,9 @@ var CreateClass = React.createClass({
     render: function() {
         return (
             <div>
-                Type something:{this.state.text}
+
+                <h1>CreateClass:{this.state.text}{this.props.value}</h1>
+                <h2>{this.props.name}</h2>
                 <input onChange={this.handleChange}  />
             </div>
         );

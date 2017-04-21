@@ -7,7 +7,11 @@ import React from 'react';
 //第二个参数是该标签的属性，这个参数是可选的。
 //第三个参数是该元素的子节点，同样也是可选的。
 
-var p = React.createElement("p",null,"I am createElement!");
+var p = React.createElement(
+		"h1",
+		null,
+		"I am createElement!"
+	);
 
 
 //React.createElement('div', {}, 'Hello, world!'), 
