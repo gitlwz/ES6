@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function(props){  //所以只要有可能，尽量使用无状态函数式组件
 	return (	
-			<h1 ref={(node) => ref = node}>
+			<h1>
 				我是无状态函数式组件
 			</h1>
 		)
