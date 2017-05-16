@@ -18,14 +18,14 @@ import Component from './Component.js'
 
 ReactDom.render(
 		<div>
-
-		{CreateElement}
+			{CreateElement}
 		
-		<CreateClass></CreateClass>
-
-		<Stateless></Stateless>
-
-		<Component></Component>
+			<CreateClass></CreateClass>
+			
+			<Stateless></Stateless>
+			
+			<Component></Component>
+		
 
 		</div>,
 		

@@ -80,12 +80,12 @@
 
 
 	_reactDom2.default.render(_react2.default.createElement(
-			'div',
-			null,
-			_createElement2.default,
-			_react2.default.createElement(_createClass2.default, null),
-			_react2.default.createElement(_stateless2.default, null),
-			_react2.default.createElement(_Component2.default, null)
+		'div',
+		null,
+		_createElement2.default,
+		_react2.default.createElement(_createClass2.default, null),
+		_react2.default.createElement(_stateless2.default, null),
+		_react2.default.createElement(_Component2.default, null)
 	), document.getElementById("app"));
 
 /***/ }),
@@ -21965,17 +21965,25 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _child = __webpack_require__(186);
+	var _father = __webpack_require__(186);
+
+	var _father2 = _interopRequireDefault(_father);
+
+	var _child = __webpack_require__(187);
 
 	var _child2 = _interopRequireDefault(_child);
 
-	var _child3 = __webpack_require__(188);
+	var _child3 = __webpack_require__(189);
 
 	var _child4 = _interopRequireDefault(_child3);
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _reactAddonsPureRenderMixin = __webpack_require__(190);
+
+	var _reactAddonsPureRenderMixin2 = _interopRequireDefault(_reactAddonsPureRenderMixin);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21984,8 +21992,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	//import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 	var CreateComponent = function (_React$Component) {
 	    _inherits(CreateComponent, _React$Component);
@@ -22007,7 +22013,7 @@
 	        _this.state = {
 	            text: props.initialValue || 'placeholder'
 	        };
-	        //      this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+	        _this.shouldComponentUpdate = _reactAddonsPureRenderMixin2.default.shouldComponentUpdate.bind(_this);
 	        // ES6 类中函数必须手动绑定
 	        //有三种绑定方式
 	        _this.handleChange = _this.handleChange.bind(_this);
@@ -22068,11 +22074,68 @@
 
 /***/ }),
 /* 186 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Animal = function () {
+	    function Animal(a) {
+	        _classCallCheck(this, Animal);
+
+	        console.log('$$$$$$$$$$$$$$$', a);
+	        this.type = 'animal';
+	    }
+
+	    _createClass(Animal, [{
+	        key: 'says',
+	        value: function says(say) {
+	            console.log(this.type + ' says ' + say);
+	        }
+	    }]);
+
+	    return Animal;
+	}();
+
+	var animal = new Animal();
+	animal.says('hello'); //animal says hello
+
+	var Cat = function (_Animal) {
+	    _inherits(Cat, _Animal);
+
+	    function Cat(a) {
+	        _classCallCheck(this, Cat);
+
+	        var _this = _possibleConstructorReturn(this, (Cat.__proto__ || Object.getPrototypeOf(Cat)).call(this));
+
+	        _get(Cat.prototype.__proto__ || Object.getPrototypeOf(Cat.prototype), 'says', _this).call(_this, '我是谁');
+	        console.log('a===========', a);
+	        _this.type = 'cat';
+	        return _this;
+	    }
+
+	    return Cat;
+	}(Animal);
+
+	var cat = new Cat('我是外部子元素的参数');
+	cat.says('hello'); //cat says hello
+
+/***/ }),
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _father = __webpack_require__(187);
+	var _father = __webpack_require__(188);
 
 	var _father2 = _interopRequireDefault(_father);
 
@@ -22084,7 +22147,7 @@
 	a11.fs();
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -22102,12 +22165,12 @@
 	exports.default = FZ;
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _father = __webpack_require__(187);
+	var _father = __webpack_require__(188);
 
 	var _father2 = _interopRequireDefault(_father);
 
@@ -22116,6 +22179,34 @@
 	var a22 = new _father2.default();
 
 	a22.fs();
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2015-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 */
+
+	'use strict';
+
+	var shallowEqual = __webpack_require__(127);
+
+	module.exports = {
+	  shouldComponentUpdate: function(nextProps, nextState) {
+	    return (
+	      !shallowEqual(this.props, nextProps) ||
+	      !shallowEqual(this.state, nextState)
+	    );
+	  },
+	};
+
 
 /***/ })
 /******/ ]);

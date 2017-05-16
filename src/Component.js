@@ -1,3 +1,6 @@
+import a11 from "./inherit/father.js"
+
+
 
 import a13 from "./inherittesting/child.js"
 
@@ -18,7 +21,7 @@ import a23 from "./inherittesting/child2.js"
 import React, { PropTypes, Component }from 'react';
 
 
-//import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class CreateComponent extends React.Component {
     // static propTypes = {//类的静态属性
@@ -36,7 +39,7 @@ class CreateComponent extends React.Component {
         this.state = {
             text: props.initialValue || 'placeholder'
         };
-//      this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
         // ES6 类中函数必须手动绑定
         //有三种绑定方式
         this.handleChange = this.handleChange.bind(this);
